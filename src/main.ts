@@ -146,11 +146,14 @@ class TestReporter {
     const skipped = results.reduce((sum, tr) => sum + tr.skipped, 0)
     const time = results.reduce((sum, tr) => sum + tr.time, 0)
 
-    core.setOutput('conclusion', conclusion)
-    core.setOutput('passed', passed)
-    core.setOutput('failed', failed)
-    core.setOutput('skipped', skipped)
-    core.setOutput('time', time)
+    // https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
+    // Disabling setOutput for now to remove annotations
+
+    // core.setOutput('conclusion', conclusion)
+    // core.setOutput('passed', passed)
+    // core.setOutput('failed', failed)
+    // core.setOutput('skipped', skipped)
+    // core.setOutput('time', time)
 
     if (this.failOnError && isFailed) {
       core.setFailed(`Failed tests were found and 'fail-on-error' option is set to ${this.failOnError}`)
